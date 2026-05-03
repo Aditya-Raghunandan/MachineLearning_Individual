@@ -1,0 +1,7 @@
+metric,P2 XGBoost (full),P2 XGBoost (no imd_band)
+CV AUC mean,0.821,0.818
+CV AUC std,0.005,0.005
+Test AUC,0.821,0.818
+Test F1,0.756,0.751
+Test Recall,0.834,0.824
+Threshold,0.350,0.350
