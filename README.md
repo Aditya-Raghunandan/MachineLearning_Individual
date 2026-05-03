@@ -32,3 +32,6 @@ Open `OULAD_Individual_2434427.ipynb` and run all cells top to bottom.
 ## Results
 
 XGBoost outperforms Logistic Regression on AUC and log loss. Both confusion matrices and ROC curves are in the notebook.
+
+## Artefacts
+Artefacts for group reuse: features_table.csv is the week-4 feature schema, drop into the group pipeline as the contract for week-2/6/8 builders. pipeline_comparison.csv is the KPI baseline.
