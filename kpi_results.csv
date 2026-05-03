@@ -1,0 +1,14 @@
+,Pipeline 1 (LogReg),Pipeline 2 (XGBoost)
+Threshold,0.35,0.35
+Accuracy,0.704,0.717
+LogLoss,0.535,0.506
+Precision,0.674,0.691
+Recall,0.845,0.834
+Specificity,0.547,0.588
+FalsePositiveRate,0.453,0.412
+F1,0.75,0.756
+AUC,0.806,0.821
+TN,1681.0,1808.0
+FP,1392.0,1265.0
+FN,526.0,565.0
+TP,2872.0,2833.0

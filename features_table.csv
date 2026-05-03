@@ -1,0 +1,22 @@
+Feature,Source CSV(s),Original column(s),Data type,Definition,How computed,Week availability,Missing count,Outliers count,Duplicate count,Leakage risk,Notes
+code_module,studentInfo,code_module,cat,Module identifier,as-is,2/4/6/8,0,n/a,0,None,Course-level effect
+code_presentation,studentInfo,code_presentation,cat,Presentation identifier,as-is,2/4/6/8,0,n/a,0,None,Year/semester effect
+gender,studentInfo,gender,cat,Gender,as-is,2/4/6/8,0,n/a,0,Low,Fairness-sensitive
+region,studentInfo,region,cat,UK region,as-is,2/4/6/8,0,n/a,0,Low,Postcode-correlated
+highest_education,studentInfo,highest_education,cat,Highest qualification (ordinal),as-is,2/4/6/8,0,n/a,0,None,Ordinal
+imd_band,studentInfo,imd_band,cat,Index of Multiple Deprivation,missing -> 'Unknown' category,2/4/6/8,1111,n/a,0,Low,Socioeconomic proxy; 'Unknown' retained
+age_band,studentInfo,age_band,cat,Age range (ordinal),as-is,2/4/6/8,0,n/a,0,None,Ordinal
+num_of_prev_attempts,studentInfo,num_of_prev_attempts,num,Prior module attempts,as-is,2/4/6/8,0,4172,0,None,
+studied_credits,studentInfo,studied_credits,num,Credits in this presentation,as-is,2/4/6/8,0,350,0,None,
+disability,studentInfo,disability,bool,Declared disability,as-is,2/4/6/8,0,n/a,0,Low,Fairness-sensitive
+total_clicks_w4,studentVle,sum_click,num,Total VLE clicks weeks 1-4,"groupby+sum, date<=28",4,0,2019,0,None,Skewed; retained
+days_active_w4,studentVle,date,num,Distinct active days w1-4,"groupby+nunique, date<=28",4,0,420,0,None,
+distinct_sites_w4,studentVle,id_site,num,Distinct VLE resources visited,"groupby+nunique, date<=28",4,0,796,0,None,
+max_clicks_day_w4,studentVle,sum_click,num,Peak single-day clicks,"groupby+max, date<=28",4,0,1347,0,None,
+mean_clicks_day_w4,studentVle,sum_click,num,Mean clicks per active day,"groupby+mean, date<=28",4,0,810,0,None,
+clicks_week_1..4,studentVle,sum_click,num,Per-week click totals (4 columns),groupby(week)+sum,4,0,—,0,None,Temporal trajectory
+click_trend_simple,studentVle,sum_click,num,Closed-form weekly slope,(week_4 - week_1) / 3,4,0,5751,0,None,Replaces polyfit slope
+click_velocity,studentVle,sum_click,num,Clicks(w4) - Clicks(w1),row-wise difference,4,0,5751,0,None,Engineered
+late_momentum,studentVle,sum_click,num,Clicks(w4) - Clicks(w3),row-wise difference,4,0,5146,0,None,Engineered
+week4_intensity,studentVle,sum_click,num,Week-4 share of total clicks,w4 / (w1+w2+w3+w4 + 1),4,0,1019,0,None,Engineered
+clicks_act_<type>,studentVle+vle,sum_click,num,Clicks per VLE activity_type,groupby(activity_type)+sum,4,0,—,0,None,18 activity types pivoted
